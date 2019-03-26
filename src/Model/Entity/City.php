@@ -7,8 +7,8 @@ use Cake\ORM\Entity;
  * City Entity
  *
  * @property int $id
+ * @property string $name
  * @property int $state_id
- * @property string $city_name
  *
  * @property \App\Model\Entity\State $state
  */
@@ -25,8 +25,8 @@ class City extends Entity
      * @var array
      */
     protected $_accessible = [
+        'name' => true,
         'state_id' => true,
-        'city_name' => true,
         'state' => true
     ];
 }

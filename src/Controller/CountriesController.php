@@ -23,15 +23,6 @@ class CountriesController extends AppController
         $countries = $this->paginate($this->Countries);
 
         $this->set(compact('countries'));
-
-       
-    }
-    public function disp(){
-        $countries = $this->paginate($this->Countries);
-       
-        $this->set(compact('countries'));
-        $this->set('_serialize', ['countries']);
-    
     }
 
     /**
@@ -44,7 +35,7 @@ class CountriesController extends AppController
     public function view($id = null)
     {
         $country = $this->Countries->get($id, [
-            'contain' => ['States']
+            'contain' => []
         ]);
 
         $this->set('country', $country);
@@ -113,44 +104,17 @@ class CountriesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-     public function getstatess() {
-        $statess = array();
-        if (isset($this->request['data']['id'])) {
-            $statess = $this->Countries->States->find('list', array(
-                'fields' => array(
-                    'id',
-                    'states_name',
-                ),
-                'conditions' => array(
-                    'states.countries_id' => $this->request['data']['id']
-                )
-            ));
-        }
-        header('Content-Type: application/json');
-        echo json_encode($statess);
-        exit();
+    public function search(){
+        $this->request->allowMethod('ajax');
+      
+        $keyword = $this->request->query('keyword');
+        
+        $query = $this->Countries->find('all',[
+              'conditions' => ['name LIKE'=>'%'.$keyword.'%'],
+              'order' => ['name'=>'DESC'],
+              'limit' => 10
+        ]);
+        $this->set('countries', $this->paginate($query));
+        $this->set('_serialize', ['countries']);
     }
-    //www.techsofttutorials.com
-    // free latest programming technology tutorials and demo.
-  
-
-    public function getCities() {
-        $cities = array();
-        $data = $this->request->getData();
-        if (isset($data)) {
-            $cities = $this->Countries->States->City->find('list', array(
-                'fields' => array(
-                    'id',
-                    'city_name',
-                ),
-                'conditions' => array(
-                    'City.states_id' => $this->request->getData()
-                )
-            ));
-        }
-        header('Content-Type: application/json');
-        echo json_encode($cities);
-        exit();
-    }
-
 }

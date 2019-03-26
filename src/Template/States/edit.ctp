@@ -25,8 +25,8 @@
     <fieldset>
         <legend><?= __('Edit State') ?></legend>
         <?php
-            echo $this->Form->control('countries_id', ['options' => $countries]);
-            echo $this->Form->control('state_name');
+            echo $this->Form->control('name');
+            echo $this->Form->control('country_id');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

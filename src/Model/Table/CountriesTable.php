@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Countries Model
  *
+ * @property |\Cake\ORM\Association\HasMany $States
+ *
  * @method \App\Model\Entity\Country get($primaryKey, $options = [])
  * @method \App\Model\Entity\Country newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Country[] newEntities(array $data, array $options = [])
@@ -27,8 +29,6 @@ class CountriesTable extends Table
      * @param array $config The configuration for the Table.
      * @return void
      */
-  
-   
     public function initialize(array $config)
     {
         parent::initialize($config);
@@ -36,6 +36,10 @@ class CountriesTable extends Table
         $this->setTable('countries');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->hasMany('States', [
+            'foreignKey' => 'country_id'
+        ]);
     }
 
     /**
@@ -51,10 +55,10 @@ class CountriesTable extends Table
             ->allowEmptyString('id', 'create');
 
         $validator
-            ->scalar('country_name')
-            ->maxLength('country_name', 25)
-            ->requirePresence('country_name', 'create')
-            ->allowEmptyString('country_name', false);
+            ->scalar('name')
+            ->maxLength('name', 150)
+            ->requirePresence('name', 'create')
+            ->allowEmptyString('name', false);
 
         return $validator;
     }

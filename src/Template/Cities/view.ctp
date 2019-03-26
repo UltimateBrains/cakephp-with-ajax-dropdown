@@ -19,12 +19,12 @@
     <h3><?= h($city->id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('State') ?></th>
-            <td><?= $city->has('state') ? $this->Html->link($city->state->id, ['controller' => 'States', 'action' => 'view', $city->state->id]) : '' ?></td>
+            <th scope="row"><?= __('Name') ?></th>
+            <td><?= h($city->name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('City Name') ?></th>
-            <td><?= h($city->city_name) ?></td>
+            <th scope="row"><?= __('State') ?></th>
+            <td><?= $city->has('state') ? $this->Html->link($city->state->id, ['controller' => 'States', 'action' => 'view', $city->state->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>

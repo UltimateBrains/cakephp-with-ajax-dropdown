@@ -56,10 +56,10 @@ class CitiesTable extends Table
             ->allowEmptyString('id', 'create');
 
         $validator
-            ->scalar('city_name')
-            ->maxLength('city_name', 35)
-            ->requirePresence('city_name', 'create')
-            ->allowEmptyString('city_name', false);
+            ->scalar('name')
+            ->maxLength('name', 30)
+            ->requirePresence('name', 'create')
+            ->allowEmptyString('name', false);
 
         return $validator;
     }

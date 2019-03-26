@@ -17,8 +17,8 @@
     <fieldset>
         <legend><?= __('Add City') ?></legend>
         <?php
+            echo $this->Form->control('name');
             echo $this->Form->control('state_id', ['options' => $states]);
-            echo $this->Form->control('city_name');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

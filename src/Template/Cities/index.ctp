@@ -18,8 +18,8 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('state_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('city_name') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -27,8 +27,8 @@
             <?php foreach ($cities as $city): ?>
             <tr>
                 <td><?= $this->Number->format($city->id) ?></td>
+                <td><?= h($city->name) ?></td>
                 <td><?= $city->has('state') ? $this->Html->link($city->state->id, ['controller' => 'States', 'action' => 'view', $city->state->id]) : '' ?></td>
-                <td><?= h($city->city_name) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $city->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $city->id]) ?>

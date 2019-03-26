@@ -21,16 +21,16 @@
     <h3><?= h($state->id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Country') ?></th>
-            <td><?= $state->has('country') ? $this->Html->link($state->country->id, ['controller' => 'Countries', 'action' => 'view', $state->country->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('State Name') ?></th>
-            <td><?= h($state->state_name) ?></td>
+            <th scope="row"><?= __('Name') ?></th>
+            <td><?= h($state->name) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($state->id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Country Id') ?></th>
+            <td><?= $this->Number->format($state->country_id) ?></td>
         </tr>
     </table>
     <div class="related">
@@ -39,15 +39,15 @@
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('Name') ?></th>
                 <th scope="col"><?= __('State Id') ?></th>
-                <th scope="col"><?= __('City Name') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($state->cities as $cities): ?>
             <tr>
                 <td><?= h($cities->id) ?></td>
+                <td><?= h($cities->name) ?></td>
                 <td><?= h($cities->state_id) ?></td>
-                <td><?= h($cities->city_name) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Cities', 'action' => 'view', $cities->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Cities', 'action' => 'edit', $cities->id]) ?>

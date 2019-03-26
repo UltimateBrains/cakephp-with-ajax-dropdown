@@ -39,7 +39,7 @@ class StatesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Countries', [
-            'foreignKey' => 'countries_id',
+            'foreignKey' => 'country_id',
             'joinType' => 'INNER'
         ]);
         $this->hasMany('Cities', [
@@ -60,10 +60,10 @@ class StatesTable extends Table
             ->allowEmptyString('id', 'create');
 
         $validator
-            ->scalar('state_name')
-            ->maxLength('state_name', 35)
-            ->requirePresence('state_name', 'create')
-            ->allowEmptyString('state_name', false);
+            ->scalar('name')
+            ->maxLength('name', 30)
+            ->requirePresence('name', 'create')
+            ->allowEmptyString('name', false);
 
         return $validator;
     }
@@ -77,7 +77,7 @@ class StatesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['countries_id'], 'Countries'));
+        $rules->add($rules->existsIn(['country_id'], 'Countries'));
 
         return $rules;
     }

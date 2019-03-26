@@ -20,8 +20,8 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('countries_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('state_name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('country_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -29,8 +29,8 @@
             <?php foreach ($states as $state): ?>
             <tr>
                 <td><?= $this->Number->format($state->id) ?></td>
-                <td><?= $state->has('country') ? $this->Html->link($state->country->id, ['controller' => 'Countries', 'action' => 'view', $state->country->id]) : '' ?></td>
-                <td><?= h($state->state_name) ?></td>
+                <td><?= h($state->name) ?></td>
+                <td><?= $this->Number->format($state->country_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $state->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $state->id]) ?>

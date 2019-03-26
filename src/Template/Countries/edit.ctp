@@ -14,8 +14,6 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Countries'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List States'), ['controller' => 'States', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New State'), ['controller' => 'States', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="countries form large-9 medium-8 columns content">
@@ -23,7 +21,7 @@
     <fieldset>
         <legend><?= __('Edit Country') ?></legend>
         <?php
-            echo $this->Form->control('country_name');
+            echo $this->Form->control('name');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

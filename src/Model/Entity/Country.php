@@ -7,7 +7,7 @@ use Cake\ORM\Entity;
  * Country Entity
  *
  * @property int $id
- * @property string $country_name
+ * @property string $name
  */
 class Country extends Entity
 {
@@ -22,6 +22,6 @@ class Country extends Entity
      * @var array
      */
     protected $_accessible = [
-        'country_name' => true
+        'name' => true
     ];
 }

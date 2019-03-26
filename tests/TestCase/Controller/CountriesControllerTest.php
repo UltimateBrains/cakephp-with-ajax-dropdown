@@ -18,8 +18,7 @@ class CountriesControllerTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Countries',
-        'app.States'
+        'app.Countries'
     ];
 
     /**
