@@ -26,7 +26,7 @@ class HomesController extends AppController
         $this->request->allowMethod('ajax');
       
         $country_id = $this->request->query('country_id');
-        echo $country_id;
+       // echo $country_id;
         $state = $this->States->find()->select('name')->where(['country_id'=> $country_id]);
         // return json_encode($state);
         return $this->response
