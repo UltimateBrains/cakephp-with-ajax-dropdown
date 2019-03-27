@@ -22,12 +22,13 @@ class HomesController extends AppController
         $this->set(compact('country'));
     }
 
-    public function getStates(){
+    public function statess(){
         $this->request->allowMethod('ajax');
       
         $country_id = $this->request->query('country_id');
+        echo $country_id;
         $state = $this->States->find()->select('name')->where(['country_id'=> $country_id]);
-         return json_encode($state);
+        // return json_encode($state);
         return $this->response
             ->withType('application/json')
             ->withStringBody(json_encode([

@@ -39,7 +39,7 @@
         </tbody>
     </table>
 </div>
-    <div class="paginator">
+    <!-- <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
@@ -48,7 +48,7 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
+    </div> -->
 </div>
 <script>
     $('document').ready(function(){

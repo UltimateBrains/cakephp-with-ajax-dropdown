@@ -45,35 +45,25 @@
 	</div>
 	
 	 <script>
-    $(document).ready(function(){
-            $('#country').change(function(){
-                
-                var id=$(this).val();
-                //var targeturl = 'homes/getStates';
-                var targeturl = '<?php echo h($this->Url->build(["controller" => "homes","action" => "getStates"]));?>';
-
-                 alert(id);
-                
-                // if(id=='-1'){
-                //   $('#state').html('<option value="-1">Select State</option>');
-                // }else{
-             //      $("#divLoading").addClass('show');
-                //   $('#state').html('<option value="-1">Select State</option>');              
-                  $.ajax({
-
-                    type:'post',
-                    url: targeturl,                
-                    data:'country_id='+id,
-                    success:function(result){
-                        // $("#divLoading").removeClass('show');
-                        // $('#state').append(result);
-                        alert(result);
-                        }
-                }); 
-            
-            });
-
- });
+   $('document').ready(function(){
+         $('#country').change(function(){
+            var searchkey = $(this).val();
+            searchName( searchkey );
+         });
+        function searchName( keyword ){
+        var data = keyword;
+        alert(data);
+        $.ajax({
+                    method: 'get',
+                    url : "<?php echo $this->Url->build( [ 'controller' => 'Countries', 'action' => 'statess' ] ); ?>",
+                    data: {country_id:data},
+                    success: function( response )
+                    {       
+                       $( '#state' ).html(response);
+                    }
+                });
+        };
+    });
 
     
 </script>
