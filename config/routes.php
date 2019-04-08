@@ -43,6 +43,8 @@ use Cake\Routing\Route\DashedRoute;
  * constructor in your `src/Application.php` file to change this behavior.
  *
  */
+Router::extensions('xlsx');
+
 Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
@@ -102,3 +104,8 @@ Router::scope('/', function (RouteBuilder $routes) {
  * });
  * ```
  */
+Router::scope('/pdf_download/:id', function (RouteBuilder $routes) {
+    $routes->addExtensions(['pdf']);
+    $routes->connect('/', ['controller' => 'Pages', 'action' => 'cakePdfDownload']);
+
+});

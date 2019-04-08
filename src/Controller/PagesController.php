@@ -29,6 +29,16 @@ use Cake\View\Exception\MissingTemplateException;
 class PagesController extends AppController
 {
 
+    public function cakePdfDownload($name = null)
+    {
+        Configure::write('CakePdf.download', true);
+        Configure::write('CakePdf.filename', "MyCustomName.pdf");
+
+    }
+    public function index(){
+        
+    }
+
     /**
      * Displays a view
      *
@@ -66,4 +76,8 @@ class PagesController extends AppController
             throw new NotFoundException();
         }
     }
+    
+
+
+
 }

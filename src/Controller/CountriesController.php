@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Routing\Router;
 
 /**
  * Countries Controller
@@ -13,13 +14,18 @@ use App\Controller\AppController;
 class CountriesController extends AppController
 {
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
+    public $base_url;
+
+    public function initialize(){
+       parent :: initialize();
+       
+       $this->base_url = Router::url("/",true);
+
+      
+    } 
     public function index()
     {
+       
         $countries = $this->paginate($this->Countries);
 
         $this->set(compact('countries'));
@@ -117,4 +123,69 @@ class CountriesController extends AppController
         $this->set('countries', $this->paginate($query));
         $this->set('_serialize', ['countries']);
     }
+    public function export()
+    {
+        
+        $data = $this->Countries->find()->toArray();;
+        $_header = ['ID', 'Name'];
+        $_serialize = 'data';
+
+        $this->viewBuilder()->setClassName('CsvView.Csv');
+        $this->set(compact('data','_header', '_serialize'));
+    }
+    public function certificateView(){
+        $this->set("baseurl",$this->base_url);
+
+    }
+     public function exportpdf()
+        {
+            $invoice = $this->Countries->find();
+            $this->viewBuilder()->setClassName('CakePdf.Pdf');
+            $this->viewBuilder()->options([
+                'pdfConfig' => [
+                    'download'=> false,
+                   
+                    'orientation' => 'portrait',
+                    'filename' => 'certificate_'
+                ],
+                'options' => [
+                'print' => true,
+                'outline' => true,
+                'dpi' => 96
+            ],
+            ]);
+            $this->set('invoice', $invoice);
+        }
+
+        public function exportexcel(){
+
+            $datatbl ='';
+            $datatbl = '<table cellspacing="2" cellpadding="5" style="border:2px; text-align:center; width:60%; border:3;">';
+
+            $datatbl .= '<tr>
+                        <th style="text-align:center;">Sr. No.</th>
+                        <th style="text-align:center;">Name</th>
+                        </tr>';
+
+            $country = $this->Countries->find();
+            foreach ($country as $country) {
+                 
+                 $id = $country['id'];
+                 $name = $country['name'];
+                 $datatbl .= '<tr>
+                        <th style="text-align:center;">'.$id.'</th>
+                        <th style="text-align:center;">'.$name.'</th>
+                        </tr>';
+             }
+             $datatbl .= '</table>';
+             // Excel Export
+             header('Content-Type: application/force-download');
+             header('Content-disposition:attachment;filename=general_order_detail_list.xls');
+             header('Pragm:');
+             header('Cache-Control: ');
+             echo $datatbl;
+             die;
+
+        }
+
 }

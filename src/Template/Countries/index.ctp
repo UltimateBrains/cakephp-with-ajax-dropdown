@@ -8,6 +8,10 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Country'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Export To CSV'), ['action' => 'export']) ?></li>
+        <li><?= $this->Html->link(__('Export To Excel'), ['action' => 'exportexcel']) ?></li>
+        <li><?= $this->Html->link(__('Generate Certificate'), ['action' => 'certificateView']) ?></li>
+        
     </ul>
 </nav>
 <div class="countries index large-9 medium-8 columns content">

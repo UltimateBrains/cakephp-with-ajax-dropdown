@@ -18,17 +18,20 @@ class HomesController extends AppController
        $this->loadModel("Cities");
     } 
     public function index(){
-        $country = $this->Countries->find('all')->extract('name');
-        $this->set(compact('country'));
+        $country = $this->Countries->find("all");
+       // $country = $query->all();
+       // $this->set(compact('country'));
+        $this->set("country",$country);
+
     }
 
     public function statess(){
         $this->request->allowMethod('ajax');
       
         $country_id = $this->request->query('country_id');
-       // echo $country_id;
+     
         $state = $this->States->find()->select('name')->where(['country_id'=> $country_id]);
-        // return json_encode($state);
+        
         return $this->response
             ->withType('application/json')
             ->withStringBody(json_encode([

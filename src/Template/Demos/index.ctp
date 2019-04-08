@@ -1,8 +1,8 @@
 <?php
 	echo $this->Html->script('jquery.min');
 	echo $this->Form->control('country',[
-		'id' =>'country',
-		'options' => $countries,
+		//'id' =>'country',
+		//'options' => $countries,
 		
 	]);
 	echo $this->Html->image('ajax-loader.gif', array('alt' => 'lodding', 'id' => 'loding1'));
