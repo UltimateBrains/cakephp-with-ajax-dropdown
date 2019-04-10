@@ -40,12 +40,17 @@ class HomesController extends AppController
             ]));     
     }
 
-    public function getCities($state_id){
-         $state = $this->Cities->find()->select('name')->where(['state_id =' => $state_id]);
+    public function citiess(){
+        $this->request->allowMethod('ajax');
+        $state_id = $this->request->query('state_id');
+        $city = $this->Cities->find()->select('name')->where(['state_id =' => $state_id]);
+   
+        
+
         return $this->response
           ->withType('application/json')
           ->withStringBody(json_encode([
-            'state' => $state,
+            'city' => $city,
            
         ]));
     }

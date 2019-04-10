@@ -95,7 +95,7 @@
 	                });
 					};
 					////  get cities
-					$('#city').change(function(){
+					$('#state').change(function(){
 
 						var searchkey = $(this).val();
 						searchCity( searchkey );
@@ -105,16 +105,16 @@
 						//alert(data);
 						$.ajax({
 							method: 'get',
-							url : "<?php echo $this->Url->build( [ 'controller' => 'homes', 'action' => 'getCities' ] ); ?>",
-							data: {city_id:data},
+							url : "<?php echo $this->Url->build( [ 'controller' => 'homes', 'action' => 'citiess' ] ); ?>",
+							data: {state_id:data},
 							dataType:'json',
 							success: function( response )
 							{    
-							    $('#state').html("");
-	                	   		$.each(response.state, function(key, value) {
+							    $('#city').html("");
+	                	   		$.each(response.city, function(key, value) {
                         		//alert(JSON.stringify(value.name))	
                         		key++;
-                        		$('#state').append($('<option>', {value:key, text:value.name}));
+                        		$('#city').append($('<option>', {value:key, text:value.name}));
                          		})                   		
 	                  	   
 	                        }
