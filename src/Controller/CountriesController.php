@@ -26,6 +26,7 @@ class CountriesController extends AppController
     public function index()
     {
        
+
         $countries = $this->paginate($this->Countries);
 
         $this->set(compact('countries'));
@@ -134,6 +135,7 @@ class CountriesController extends AppController
         $this->set(compact('data','_header', '_serialize'));
     }
     public function certificateView(){
+
         $this->set("baseurl",$this->base_url);
 
     }
@@ -143,16 +145,10 @@ class CountriesController extends AppController
             $this->viewBuilder()->setClassName('CakePdf.Pdf');
             $this->viewBuilder()->options([
                 'pdfConfig' => [
-                    'download'=> false,
-                   
                     'orientation' => 'portrait',
-                    'filename' => 'certificate_'
+                    'filename' => '/pdf/certificate_'
                 ],
-                'options' => [
-                'print' => true,
-                'outline' => true,
-                'dpi' => 96
-            ],
+                
             ]);
             $this->set('invoice', $invoice);
         }

@@ -38,7 +38,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
-        <div id="background">
+<div id="background">
  <div id="layer_1"><?php echo $this->Html->image('layer_1.png', ['fullBase' => true]); ?></div>
  <div id="layer_2"><?php echo $this->Html->image('layer_2.png', ['fullBase' => true]); ?></div>
  <div id="layer_3"><?php echo $this->Html->image('layer_3.png', ['fullBase' => true]); ?></div>
@@ -59,7 +59,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <div id="layer_17"><?php echo $this->Html->image('layer_17.png', ['fullBase' => true]); ?></div>
 <div id="layer_18"><?php echo $this->Html->image('layer_18.png', ['fullBase' => true]); ?></div>
 <div id="layer_19"><?php echo $this->Html->image('layer_19.png', ['fullBase' => true]); ?></div>
- </div>
+</div>
     </div>
     <footer>
     </footer>

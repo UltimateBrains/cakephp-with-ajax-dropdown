@@ -1,3 +1,15 @@
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('Go To Counties '), ['controller'=>'countries','action' => 'index']) ?></li>
+        
+        
+    </ul>
+</nav>
+
+
+
+
 	<br>
 	<div class="panel panel-default" style="width: 500px; height: 450px;margin: auto;">
 	<div class="panel-body">
@@ -27,11 +39,10 @@
 						<?php 
 
 						echo $this->Form->select('state_name',
+							['id' => '' ],
+
 							[
-								'options' => '$state',
-								'id'=>'state'
-						    ],
-							[
+
 								'empty'   => 'Select State',
 								'id'      => 'state',
 								'class'=>'form-control'
@@ -42,6 +53,7 @@
 						<div class="form-group">
 							<?php 
 							echo $this->Form->select('city_name',
+								['id'=>''],
 								[ 
 									'empty'   => 'Select City',
 									'id'      => 'city',
@@ -64,38 +76,52 @@
 					});
 					function searchName( keyword ){
 						var data = keyword;
-						alert(data);
+						//alert(data);
 						$.ajax({
 							method: 'get',
 							url : "<?php echo $this->Url->build( [ 'controller' => 'homes', 'action' => 'statess' ] ); ?>",
 							data: {country_id:data},
+							dataType:'json',
 							success: function( response )
-							{       
-	                	//document.getElementById("state").value = response;
-	                        //$('#state').val(response)
-	                        // $('#state').html(response);
-	                        	data = JSON.stringify(response);
-	                        	alert(data);
-	                   	   		$.each(data.response, function(value) {              
-                             
-                        		//$('<option>').val(value).html($("#state"));
-                        		$('#state').html(response);
-                    		});
-
-						        
-
-						        // $.each(data.response, function(key, value) {
-						        //      $('#state')
-						        //         .append($("<option></option>")
-						        //         .attr("value",key)
-						        //         .text(value));
-						        // });
-
-	
+							{    
+							    $('#state').html("");
+	                	   		$.each(response.state, function(key, value) {
+                        		//alert(JSON.stringify(value.name))	
+                        		key++;
+                        		$('#state').append($('<option>', {value:key, text:value.name}));
+                         		})                   		
 	                  	   
 	                        }
 	                });
 					};
+					////  get cities
+					$('#city').change(function(){
+
+						var searchkey = $(this).val();
+						searchCity( searchkey );
+					});
+					function searchCity( keyword ){
+						var data = keyword;
+						//alert(data);
+						$.ajax({
+							method: 'get',
+							url : "<?php echo $this->Url->build( [ 'controller' => 'homes', 'action' => 'getCities' ] ); ?>",
+							data: {city_id:data},
+							dataType:'json',
+							success: function( response )
+							{    
+							    $('#state').html("");
+	                	   		$.each(response.state, function(key, value) {
+                        		//alert(JSON.stringify(value.name))	
+                        		key++;
+                        		$('#state').append($('<option>', {value:key, text:value.name}));
+                         		})                   		
+	                  	   
+	                        }
+	                });
+					};
+
+
 				});
 
 

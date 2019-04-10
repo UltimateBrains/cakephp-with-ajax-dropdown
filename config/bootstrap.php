@@ -206,9 +206,9 @@ Configure::write('CakePdf', [
     'engine' => [
         'className' => 'CakePdf.WkHtmlToPdf',
         'binary' => '/usr/bin/wkhtmltopdf', //LINUX
-        'binary' => 'C:\PROGRA~1\wkhtmltopdf\bin\wkhtmltopdf.exe', //WINDOWS
+        //'binary' => 'C:\PROGRA~1\wkhtmltopdf\bin\wkhtmltopdf.exe', //WINDOWS
         'options' => [
-            'print-media-type' => true,
+            'print-media-type' => false,
             'outline' => true,
             'dpi' => 96
         ]

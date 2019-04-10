@@ -7,6 +7,7 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('Go To Home '), ['controller'=>'homes','action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Country'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('Export To CSV'), ['action' => 'export']) ?></li>
         <li><?= $this->Html->link(__('Export To Excel'), ['action' => 'exportexcel']) ?></li>
